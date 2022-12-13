@@ -363,7 +363,7 @@ public final class Transfer extends JPanel implements JPanelView {
                 }
                 String url = db_url + db_schema + db_options;
                 try {
-                    session_target =  new Session(url, db_user, db_password);            
+                    session_target =  new Session(url, db_user, db_password);
                     con_target  = DriverManager.getConnection(url, db_user, db_password);
                     sDB_target = con_target.getMetaData().getDatabaseProductName();
                     jlblSource.setText(con_target.getCatalog());            
@@ -386,7 +386,7 @@ public final class Transfer extends JPanel implements JPanelView {
                 }
                 String url = db_url + db_schema + db_options;
                 try {
-                    session_target =  new Session(url, db_user, db_password);            
+                    session_target =  new Session(url, db_user, db_password);
                     con_target  = DriverManager.getConnection(url, db_user, db_password);
                     sDB_target = con_target.getMetaData().getDatabaseProductName();
                     jlblSource.setText(con_target.getCatalog());            
@@ -409,7 +409,7 @@ public final class Transfer extends JPanel implements JPanelView {
             }
             String url = db_url + db_schema + db_options;
             try {
-                session_target =  new Session(url, db_user, db_password);            
+                session_target =  new Session(url, db_user, db_password);
                 con_target  = DriverManager.getConnection(url, db_user, db_password);
                 sDB_target = con_target.getMetaData().getDatabaseProductName();
                 jlblSource.setText(con_target.getCatalog());            
@@ -2136,7 +2136,7 @@ public final class Transfer extends JPanel implements JPanelView {
                 new DriverWrapper((Driver) 
                 Class.forName(driver, true, cloader).newInstance()));
 
-            Session session1 = new Session(url, user, password);                
+            Session session1 = new Session(url, user, password);
 
         if (jtxtDbType.getText().equals("jdbc:postgresql://")) {
             Connection connection1 = DriverManager.getConnection(url, user, password);

@@ -43,24 +43,32 @@ public final class Session {
      */
     public final SessionDB DB;
     
-    /** Creates a new instance of Session
-     * @param url
-     * @param user
-     * @param password
-     * @throws java.sql.SQLException */
+
+
     public Session(String url, String user, String password) throws SQLException {
         m_surl = url;
         m_sappuser = user;
         m_spassword = password;
-        
+
         m_c = null;
         m_bInTransaction = false;
-        
+
         connect(); // no lazy connection
 
         DB = getDiff();
     }
-    
+    /**
+     * Creates a new instance of Session
+     *
+     * @param url
+     * @param user
+     * @param password
+     * @param options
+     * @throws java.sql.SQLException
+     */
+    public Session(String url, String user, String password,String options) throws SQLException {
+        this(url + options,user,password);
+    }
     /**
      *
      * @throws SQLException

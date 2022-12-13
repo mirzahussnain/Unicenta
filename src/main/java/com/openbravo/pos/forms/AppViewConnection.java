@@ -127,7 +127,7 @@ public class AppViewConnection {
                 props.getProperty("db.options");                
             }
 
-            return new Session(dbURL, sDBUser,sDBPassword);
+            return new Session(dbURL, sDBUser,sDBPassword );
                 
         } catch (InstantiationException | IllegalAccessException | MalformedURLException | ClassNotFoundException e) {
             throw new BasicException(AppLocal.getIntString("message.databasedrivererror"), e);

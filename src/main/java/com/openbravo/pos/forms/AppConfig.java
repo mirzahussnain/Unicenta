@@ -19,6 +19,8 @@
 
 package com.openbravo.pos.forms;
 
+import com.openbravo.pos.util.AltEncrypter;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -224,6 +226,12 @@ public class AppConfig implements AppProperties {
             InputStream in = new FileInputStream(configfile);
             if (in != null) {
                 m_propsconfig.load(in);
+
+//                //decrypt and reload the db password
+//                AltEncrypter cypher = new AltEncrypter("cypherkey" + m_propsconfig.getProperty("db.user"));
+//                String dbPassword= cypher.decrypt(m_propsconfig.getProperty("db.password").replace("crypt:",""));
+//                m_propsconfig.setProperty("db.password",dbPassword);
+
                 in.close();
             }
         } catch (IOException e){
@@ -280,8 +288,8 @@ public class AppConfig implements AppProperties {
         m_propsconfig.setProperty("db.URL", "jdbc:mysql://localhost:3306/"); 
         m_propsconfig.setProperty("db.schema", "unicentaopos");
         m_propsconfig.setProperty("db.options", "?zeroDateTimeBehavior=convertToNull");        
-        m_propsconfig.setProperty("db.user", "username");
-        m_propsconfig.setProperty("db.password", "password");     
+        m_propsconfig.setProperty("db.user", "root");
+        m_propsconfig.setProperty("db.password", "root");
 
 // secondary DB        
         m_propsconfig.setProperty("db1.name", "");        
