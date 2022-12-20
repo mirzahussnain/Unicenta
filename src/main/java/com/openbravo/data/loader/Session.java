@@ -78,7 +78,7 @@ public final class Session {
         // primero cerramos si no estabamos cerrados
         close();
         
-        // creamos una nueva conexion.
+        // creamos una nueva conexion.        
         m_c = (m_sappuser == null && m_spassword == null)
         ? DriverManager.getConnection(m_surl)
         : DriverManager.getConnection(m_surl, m_sappuser, m_spassword);         
@@ -98,7 +98,7 @@ public final class Session {
                     m_c.rollback();
                     m_c.setAutoCommit(true);  
                 }            
-                m_c.close();
+               // m_c.close();
             } catch (SQLException e) {
                 // me la como
             } finally {

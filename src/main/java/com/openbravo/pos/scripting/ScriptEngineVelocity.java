@@ -19,6 +19,7 @@
 
 package com.openbravo.pos.scripting;
 
+import com.diy.accounting.gui.LedgerManagement;
 import com.openbravo.pos.forms.AppView;
 // import com.unicenta.pos.util.ScriptletUtil;
 import java.io.StringReader;
@@ -70,7 +71,7 @@ class ScriptEngineVelocity implements ScriptEngine {
          c = new VelocityContext();     
 
 // Add JG uniCenta - see com.unicenta.pos.ScriptletUtil
-//         this.put("scriptletutil", new ScriptletUtil());                        
+    //  put("com.diy.accounting.gui.LedgerManagement", new LedgerManagement());                        
 
     }
     

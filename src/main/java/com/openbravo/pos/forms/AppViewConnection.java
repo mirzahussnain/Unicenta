@@ -16,7 +16,6 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with uniCenta oPOS.  If not, see <http://www.gnu.org/licenses/>.
-
 package com.openbravo.pos.forms;
 
 import com.openbravo.basic.BasicException;
@@ -39,11 +38,13 @@ import javax.swing.JOptionPane;
  * @author adrianromero
  */
 public class AppViewConnection {
-    
-    /** Creates a new instance of AppViewConnection */
+
+    /**
+     * Creates a new instance of AppViewConnection
+     */
     private AppViewConnection() {
     }
-    
+
     /**
      *
      * @param props
@@ -53,34 +54,33 @@ public class AppViewConnection {
     public static Session createSession(AppProperties props) throws BasicException {
 
         try {
-            String dbURL=null;
-            String sDBUser=null;
-            String sDBPassword=null;
-            String sUserPath = System.getProperty("user.home"); 
-            String filePath = sUserPath + "\\open.db";            
-            
+            String dbURL = null;
+            String sDBUser = null;
+            String sDBPassword = null;
+            String sUserPath = System.getProperty("user.home");
+            String filePath = sUserPath + "\\open.db";
+
             if (isJavaWebStart()) {
                 Class.forName(props.getProperty("db.driver"), true, Thread.currentThread().getContextClassLoader());
             } else {
-                ClassLoader cloader = new URLClassLoader(new URL[] {
+                ClassLoader cloader = new URLClassLoader(new URL[]{
                     new File(props.getProperty("db.driverlib")).toURI().toURL()});
-                DriverManager.registerDriver(new DriverWrapper((Driver) 
-                        Class.forName(props.getProperty("db.driver"), 
-                                true, cloader).newInstance()));
+                DriverManager.registerDriver(new DriverWrapper((Driver) Class.forName(props.getProperty("db.driver"),
+                        true, cloader).newInstance()));
             }
 
-            if("true".equals(props.getProperty("db.multi"))) {
+            if ("true".equals(props.getProperty("db.multi"))) {
                 if (!Files.exists(Paths.get(filePath))) {
                     ImageIcon icon = new ImageIcon("/com/openbravo/images/unicentaopos.png");
                     Object[] dbs = {
-                    "0 - " + props.getProperty("db.name"),
-                    "1 - " + props.getProperty("db1.name")};
-        
-                    Object s = (Object)JOptionPane.showInputDialog(
-                        null, AppLocal.getIntString("message.databasechoose"),
-                        "Selection", JOptionPane.OK_OPTION,
-                        icon, dbs, props.getProperty("db.name"));
-            
+                        "0 - " + props.getProperty("db.name"),
+                        "1 - " + props.getProperty("db1.name")};
+
+                    Object s = (Object) JOptionPane.showInputDialog(
+                            null, AppLocal.getIntString("message.databasechoose"),
+                            "Selection", JOptionPane.OK_OPTION,
+                            icon, dbs, props.getProperty("db.name"));
+
                     if (s.toString().startsWith("1")) {
                         sDBUser = props.getProperty("db1.user");
                         sDBPassword = props.getProperty("db1.password");
@@ -88,9 +88,10 @@ public class AppViewConnection {
                             AltEncrypter cypher = new AltEncrypter("cypherkey" + sDBUser);
                             sDBPassword = cypher.decrypt(sDBPassword.substring(6));
                         }
-                        dbURL = props.getProperty("db1.URL") +
-                        props.getProperty("db1.schema") +
-                        props.getProperty("db1.options");
+                        dbURL = props.getProperty("db1.URL")+ props.getProperty("db1.schema");
+//+
+//                        props.getProperty("db1.schema") +
+//                        props.getProperty("db1.options");
                     } else {
                         sDBUser = props.getProperty("db.user");
                         sDBPassword = props.getProperty("db.password");
@@ -98,9 +99,10 @@ public class AppViewConnection {
                             AltEncrypter cypher = new AltEncrypter("cypherkey" + sDBUser);
                             sDBPassword = cypher.decrypt(sDBPassword.substring(6));
                         }
-                        dbURL = props.getProperty("db.URL") +
-                        props.getProperty("db.schema") +
-                        props.getProperty("db.options");                        
+                        dbURL = props.getProperty("db1.URL")+ props.getProperty("db1.schema");
+//+
+//                        props.getProperty("db1.schema") +
+//                        props.getProperty("db1.options");                   
                     }
                 } else {
                     sDBUser = props.getProperty("db.user");
@@ -109,10 +111,11 @@ public class AppViewConnection {
                         AltEncrypter cypher = new AltEncrypter("cypherkey" + sDBUser);
                         sDBPassword = cypher.decrypt(sDBPassword.substring(6));
                     }
-                    dbURL = props.getProperty("db.URL") +
-                    props.getProperty("db.schema") +
-                    props.getProperty("db.options");                    
-                }    
+                        dbURL = props.getProperty("db1.URL")+ props.getProperty("db1.schema");
+//+
+//                        props.getProperty("db1.schema") +
+//                        props.getProperty("db1.options");                   
+                }
 
             } else {
                 sDBUser = props.getProperty("db.user");
@@ -122,13 +125,14 @@ public class AppViewConnection {
                     sDBPassword = cypher.decrypt(sDBPassword.substring(6));
                 }
 
-                dbURL = props.getProperty("db.URL") +
-                props.getProperty("db.schema") +
-                props.getProperty("db.options");                
+                dbURL = props.getProperty("db1.URL")+props.getProperty("db1.schema");
+//+
+//                        props.getProperty("db1.schema") +
+//                        props.getProperty("db1.options");
             }
 
-            return new Session(dbURL, sDBUser,sDBPassword );
-                
+            return new Session(dbURL, sDBUser, sDBPassword);
+
         } catch (InstantiationException | IllegalAccessException | MalformedURLException | ClassNotFoundException e) {
             throw new BasicException(AppLocal.getIntString("message.databasedrivererror"), e);
         } catch (SQLException eSQL) {
