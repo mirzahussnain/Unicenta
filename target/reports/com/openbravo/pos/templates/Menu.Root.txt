@@ -116,8 +116,15 @@ group = menu.addGroup("Menu.Backoffice");
         submenu.addPanel("/com/openbravo/images/reports.png", "Menu.EPM.DailyScheduleReport", "/com/openbravo/reports/epm_dailyschedule.bs");
         submenu.addPanel("/com/openbravo/images/reports.png", "Menu.EPM.PerformanceReport", "/com/openbravo/reports/epm_performance.bs");
 
- 
-    group = menu.addGroup("Menu.Utilities");
+//ACCOUNTING
+      submenu = group.addSubmenu("/com/openbravo/images/reports.png", "Menu.AccountingModule", "com.diy.accounting.gui.AccountingModule");	
+              submenu.addPanel("/com/openbravo/images/import.png", "Menu.LedgerManager", "com.diy.accounting.gui.LedgerManagement");
+
+
+
+
+
+group = menu.addGroup("Menu.Utilities");
     submenu = group.addSubmenu("/com/openbravo/images/utilities.png", "Menu.Tools", "com.openbravo.pos.imports.JPanelCSV");	
     submenu.addTitle("Menu.Import");
         submenu.addPanel("/com/openbravo/images/import.png", "Menu.CSVImport", "com.openbravo.pos.imports.JPanelCSVImport");
@@ -134,7 +141,7 @@ group = menu.addGroup("Menu.Backoffice");
         submenu.addPanel("/com/openbravo/images/reports.png", "Menu.Tools.MissingData", "/com/openbravo/reports/tools_missingdata.bs");
         submenu.addPanel("/com/openbravo/images/reports.png", "Menu.Tools.InvalidData", "/com/openbravo/reports/tools_invaliddata.bs");
 
-    group = menu.addGroup("Menu.System");
+group = menu.addGroup("Menu.System");
     group.addChangePasswordAction();
     group.addPanel("/com/openbravo/images/configuration.png", "Menu.Configuration", "com.openbravo.pos.config.JPanelConfiguration");
     group.addPanel("/com/openbravo/images/printer.png", "Menu.Printer", "com.openbravo.pos.panels.JPanelPrinter");
