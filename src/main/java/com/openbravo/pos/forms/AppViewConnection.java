@@ -45,18 +45,12 @@ public class AppViewConnection {
     private AppViewConnection() {
     }
 
-    /**
-     *
-     * @param props
-     * @return
-     * @throws BasicException
-     */
     public static Session createSession(AppProperties props) throws BasicException {
 
         try {
-            String dbURL = null;
-            String sDBUser = null;
-            String sDBPassword = null;
+            String dbURL;
+            String sDBUser ;
+            String sDBPassword ;
             String sUserPath = System.getProperty("user.home");
             String filePath = sUserPath + "\\open.db";
 
@@ -76,9 +70,9 @@ public class AppViewConnection {
                         "0 - " + props.getProperty("db.name"),
                         "1 - " + props.getProperty("db1.name")};
 
-                    Object s = (Object) JOptionPane.showInputDialog(
+                    Object s = JOptionPane.showInputDialog(
                             null, AppLocal.getIntString("message.databasechoose"),
-                            "Selection", JOptionPane.OK_OPTION,
+                            "Selection", JOptionPane.ERROR_MESSAGE,
                             icon, dbs, props.getProperty("db.name"));
 
                     if (s.toString().startsWith("1")) {
@@ -88,10 +82,7 @@ public class AppViewConnection {
                             AltEncrypter cypher = new AltEncrypter("cypherkey" + sDBUser);
                             sDBPassword = cypher.decrypt(sDBPassword.substring(6));
                         }
-                        dbURL = props.getProperty("db1.URL")+ props.getProperty("db1.schema");
-//+
-//                        props.getProperty("db1.schema") +
-//                        props.getProperty("db1.options");
+                        dbURL = props.getProperty("db1.URL");
                     } else {
                         sDBUser = props.getProperty("db.user");
                         sDBPassword = props.getProperty("db.password");
@@ -99,36 +90,28 @@ public class AppViewConnection {
                             AltEncrypter cypher = new AltEncrypter("cypherkey" + sDBUser);
                             sDBPassword = cypher.decrypt(sDBPassword.substring(6));
                         }
-                        dbURL = props.getProperty("db1.URL")+ props.getProperty("db1.schema");
-//+
-//                        props.getProperty("db1.schema") +
-//                        props.getProperty("db1.options");                   
+                        dbURL = props.getProperty("db.URL");
                     }
-                } else {
-                    sDBUser = props.getProperty("db.user");
-                    sDBPassword = props.getProperty("db.password");
+                }
+                else {
+                    sDBUser = props.getProperty("db1.user");
+                    sDBPassword = props.getProperty("db1.password");
                     if (sDBUser != null && sDBPassword != null && sDBPassword.startsWith("crypt:")) {
                         AltEncrypter cypher = new AltEncrypter("cypherkey" + sDBUser);
                         sDBPassword = cypher.decrypt(sDBPassword.substring(6));
                     }
-                        dbURL = props.getProperty("db1.URL")+ props.getProperty("db1.schema");
-//+
-//                        props.getProperty("db1.schema") +
-//                        props.getProperty("db1.options");                   
+                        dbURL = props.getProperty("db1.URL");
                 }
 
-            } else {
+            }
+            else {
                 sDBUser = props.getProperty("db.user");
                 sDBPassword = props.getProperty("db.password");
                 if (sDBUser != null && sDBPassword != null && sDBPassword.startsWith("crypt:")) {
                     AltEncrypter cypher = new AltEncrypter("cypherkey" + sDBUser);
                     sDBPassword = cypher.decrypt(sDBPassword.substring(6));
                 }
-
-                dbURL = props.getProperty("db1.URL")+props.getProperty("db1.schema");
-//+
-//                        props.getProperty("db1.schema") +
-//                        props.getProperty("db1.options");
+                dbURL = props.getProperty("db.URL");
             }
 
             return new Session(dbURL, sDBUser, sDBPassword);
