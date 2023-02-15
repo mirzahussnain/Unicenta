@@ -1,3 +1,4 @@
+/*
 //  uniCenta oPOS  - Touch Friendly Point Of Sale
 //  Copyright (c) 2017 uniCenta
 //  https://unicenta.com
@@ -17,12 +18,14 @@
 //  You should have received a copy of the GNU General Public License
 //  along with uniCenta oPOS.  If not, see <http://www.gnu.org/licenses/>.
 
+*/
 /* uniCenta's OrderPop is a simple utilty to list tickets sent to remote printer
  * It connects to and list uniCenta oPOS orders table rows and requires a 
  * manual refresh using the button.
  * It runs independently of uniCenta oPOS and uses the provided orderpop.bat
 
-*/
+*//*
+
 
 package com.unicenta.orderpop;
 
@@ -215,10 +218,12 @@ public class OrderPop extends Application {
         }
     }
 
+*/
 /*
  * Check to see if we have a connection to database and 
  * and pop some data in Orders table to prime if needed
-*/  
+*//*
+
     class DBSetupTask extends DBTask {
     @Override protected Void call() throws Exception {
         try (Connection con = getConnection()) {
@@ -245,7 +250,8 @@ public class OrderPop extends Application {
         return true;
     }
 
-/* 
+*/
+/*
  * We don't need to create Orders table as should already exist
  * as created by uniCenta oPOS or unicenta_remote_display apps
     private void createSchema(Connection con) throws SQLException {
@@ -255,8 +261,10 @@ public class OrderPop extends Application {
       st.executeUpdate(table);
       logger.info("Created schema");
     }
-*/
+*//*
+
     
+*/
 /*
  *  Useful if we want to fill the Orders table with some sample data
  *  MySQL-createSampleData.sql - INSERT x12 rows
@@ -268,7 +276,8 @@ public class OrderPop extends Application {
       }
       logger.info("Populated database");
     }
-*/  
+*//*
+
 }
   
     private Connection getConnection() throws ClassNotFoundException, SQLException {
@@ -300,4 +309,4 @@ public class OrderPop extends Application {
             return thread;
         }
     }  
-}
+}*/

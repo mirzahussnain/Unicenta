@@ -13,7 +13,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+
+
 package com.openbravo.pos.util;
 
 import java.awt.BorderLayout;
@@ -38,9 +39,10 @@ import javax.swing.SwingUtilities;
 
 import com.sun.javafx.application.PlatformImpl;
 
-/**
+*
  * SwingFXWebView
- */
+
+
 public class FXWeb extends JPanel
 {
     private Stage     stage;
@@ -100,10 +102,11 @@ public class FXWeb extends JPanel
         this.add(this.swingButton, BorderLayout.SOUTH);
     }
 
-    /**
+*
      * createScene Note: Key is that Scene needs to be created and run on
      * "FX user thread" NOT on the AWT-EventQueue Thread
-     */
+
+
     private void createScene()
     {
         PlatformImpl.startup(() -> {
@@ -122,3 +125,4 @@ public class FXWeb extends JPanel
         });
     }
 }
+*/

@@ -5,8 +5,7 @@
 package com.diy.accounting.gui;
 
 import com.openbravo.basic.BasicException;
-import com.openbravo.pos.forms.AppLocal;
-import com.openbravo.pos.forms.JPanelView;
+import com.openbravo.pos.forms.*;
 
 import javax.swing.*;
 
@@ -14,19 +13,8 @@ import javax.swing.*;
  *
  * @author Ittyab Ur Rehman
  */
-public class LedgerManagement extends javax.swing.JPanel implements JPanelView{
+public class LedgerManagement extends javax.swing.JPanel implements JPanelView, BeanFactoryApp {
 
-    /**
-     * Creates new form LedgerManagement
-     */
-    public LedgerManagement() {
-        initComponents();
-    }
-
-//    public LedgerManagement() {
-//                initComponents();
-//
-//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,7 +46,7 @@ public class LedgerManagement extends javax.swing.JPanel implements JPanelView{
 
     @Override
     public boolean deactivate() {
-        return false;
+        return true;
     }
 
     @Override
@@ -66,12 +54,15 @@ public class LedgerManagement extends javax.swing.JPanel implements JPanelView{
         return this;
     }
 
-//    @Override
-//    public Object getBean() {
-//        return this;
-//    }
+    @Override
+    public Object getBean() {
+        return this;
+    }
 
+    @Override
+    public void init(AppView app) throws BeanFactoryException {
+        this.app = app;
+    }
+    private AppView app;
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    // End of variables declaration//GEN-END:variables
 }
